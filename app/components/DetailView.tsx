@@ -35,12 +35,14 @@ import {
   PresenceBadgeStatus,
   Avatar,
 } from "@fluentui/react-components";
+import { Props } from "next/script";
 
 type DetailViewProps = {
   query:string,
   answer:string,
   rate:string,
   rate_reason:string
+  
 }
 
 
@@ -61,6 +63,7 @@ const useStyles = makeStyles({
   },
 
   card: {
+    marginTop: "2em",
     width: "100%",
     maxWidth: "100%",
     height: "fit-content",
@@ -101,7 +104,7 @@ export default function DetailView(props:DetailViewProps) {
   return (
     <Card className={styles.card}>
       <CardHeader
-        header={ <Text>상세보기</Text>}
+        header={ <Text size={500}>상세보기</Text>}
       >
 
       </CardHeader>

@@ -7,8 +7,6 @@ import DetailView from "../components/DetailView";
 
 type ListAndDetailProps = {
   list:Array<any>
-  selectedItem:any
-
 }
 export default function ListAndDetail(props:ListAndDetailProps) {
 
@@ -21,16 +19,19 @@ export default function ListAndDetail(props:ListAndDetailProps) {
 
 
   return (
-      <div className="grow w-full flex flex-row items-center justify-between bg-slate-100 items-stretch">
-        <div className="bg-slate-500">
-          <QAList list={props.list} onSelectItem={(item) => {
-            setSelectedItem(item)
-          }}></QAList>
-        </div>
-        <div className="bg-slate-400">
-          <DetailView query={selectedItem.query} answer={selectedItem.answer} rate={selectedItem.rate} rate_reason={selectedItem.rate_reason}></DetailView>
+    <div className="grow w-full flex flex-row items-center justify-between bg-slate-100 items-stretch">
+      <div className="bg-slate-500">
+        <QAList list={props.list} onSelectItem={(item) => {
+          setSelectedItem(item)
+        }}></QAList>
+        <div className="text-center">
+        page 1, 2, 3 
         </div>
       </div>
+      <div className="bg-slate-400">
+        <DetailView query={selectedItem.query} answer={selectedItem.answer} rate={selectedItem.rate} rate_reason={selectedItem.rate_reason}></DetailView>
+      </div>
+    </div>
 
   )
 }

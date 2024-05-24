@@ -20,14 +20,6 @@ async function load_qainfo_list() {
   console.log(body)
 
   return body.qa_list
-
-  const list = [{
-    query: '김포공항 샐러드 가게?',
-    answer: '김포공항에는 ㅁ뭐가ㅝ가 블라블바합니다.',
-    rate: 'NO',
-    rate_reason: '아무리 생각해도 잘 모르겠습니다.',
-  }]
-  return list
 }
 
 function onSelectItem(item:any) {

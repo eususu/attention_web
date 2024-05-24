@@ -40,16 +40,6 @@ type QAListProps = {
   onSelectItem:(item:any)=>void
 }
 export default function QAList(props:QAListProps) {
-  const items = [
-    {
-      id: 28,
-      query:"김포공항 샐러드 가게?"
-    },
-    {
-      id: 29,
-      query:"김포공항 샐러드 가게?"
-    },
-  ]
 
   return (
     <Table>
