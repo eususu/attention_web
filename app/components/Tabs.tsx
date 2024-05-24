@@ -27,8 +27,8 @@ export default function Tabs(props: Partial<TabListProps>) {
   return (
     <div className={useStyles.root}>
       <TabList { ...props }>
-        <Tab icon={<CalendarMonth/>} value="ai">AI 평가 데이터</Tab>
-        <Tab icon={<CalendarMonth/>} value="full">전체 데이터</Tab>
+        <Tab value="ai">AI 평가 데이터</Tab>
+        <Tab value="full">전체 데이터</Tab>
 
       </TabList>
 

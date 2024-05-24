@@ -61,7 +61,7 @@ const useStyles = makeStyles({
   },
 
   card: {
-    width: "800px",
+    width: "100%",
     maxWidth: "100%",
     height: "fit-content",
   },

@@ -33,9 +33,12 @@ const columns = [
     columnKey: "query",
     label:"질문",
   }
-
 ]
-export default function QAList() {
+
+type QAListProps = {
+  list:Array<any>
+}
+export default function QAList(props:QAListProps) {
   const items = [
     {
       id: 28,
@@ -45,8 +48,8 @@ export default function QAList() {
       id: 29,
       query:"김포공항 샐러드 가게?"
     },
-
   ]
+
   return (
     <Table>
       <TableHeader>
@@ -63,7 +66,7 @@ export default function QAList() {
 
       </TableHeader>
       <TableBody>
-        { items.map((item) => (
+        { props.list.map((item) => (
           <TableRow key={item.id}>
             <TableCell>
               {item.id}

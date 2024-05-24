@@ -3,12 +3,25 @@ import QAList from "./components/QAList";
 import DetailView from "./components/DetailView";
 import Tabs from "./components/Tabs";
 
+import axios from "axios";
+
 
 async function load_qainfo_list() {
   const service_name = 'kaai_poc'
-  const url=`http://172.16.10.45:8008/api/qa/{service_name}`
-  const response = await fetch(url)
-  console.log(response)
+  const url=`http://172.16.10.45:8008/api/qa/${service_name}?page=0`
+
+  const response = await fetch(
+    url,
+    {
+      method: 'get',
+      mode: 'cors',
+      cache: 'no-cache',
+    }
+  );
+  const body = await response.json()
+  console.log(body)
+
+  return body.qa_list
 
   const list = [{
     query: '김포공항 샐러드 가게?',
@@ -27,6 +40,8 @@ export default async function Home() {
     rate_reason: '아무리 생각해도 잘 모르겠습니다.',
   }
 
+  const qa_list = await load_qainfo_list()
+
 
   return (
     <main className="flex min-h-screen flex-col items-center justify-between p-24">
@@ -35,7 +50,7 @@ export default async function Home() {
       </div>
       <div className="grow w-full flex flex-row items-center justify-between bg-slate-100 items-stretch">
         <div className="bg-slate-500">
-          <QAList></QAList>
+          <QAList list={qa_list}></QAList>
         </div>
         <div className="bg-slate-400">
           <DetailView query={selectedItem.query} answer={selectedItem.answer} rate={selectedItem.rate} rate_reason={selectedItem.rate_reason}></DetailView>
