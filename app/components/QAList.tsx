@@ -36,7 +36,8 @@ const columns = [
 ]
 
 type QAListProps = {
-  list:Array<any>
+  list:Array<any>,
+  onSelectItem:(item:any)=>void
 }
 export default function QAList(props:QAListProps) {
   const items = [

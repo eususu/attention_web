@@ -1,9 +1,11 @@
+"use client"
 import Image from "next/image";
 import QAList from "./components/QAList";
 import DetailView from "./components/DetailView";
 import Tabs from "./components/Tabs";
 
 import axios from "axios";
+import { useEffect, useState } from "react";
 
 
 async function load_qainfo_list() {
@@ -31,6 +33,11 @@ async function load_qainfo_list() {
   }]
   return list
 }
+
+function onSelectItem(item:any) {
+  console.log(item)
+
+}
 export default async function Home() {
 
   const selectedItem={
@@ -40,7 +47,17 @@ export default async function Home() {
     rate_reason: '아무리 생각해도 잘 모르겠습니다.',
   }
 
-  const qa_list = await load_qainfo_list()
+  const [qa_list, setQAList] = useState([])
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const qa_list = await load_qainfo_list()
+      setQAList(qa_list)
+    }
+
+    fetchData()
+
+  }, [qa_list])
 
 
   return (
@@ -50,7 +67,7 @@ export default async function Home() {
       </div>
       <div className="grow w-full flex flex-row items-center justify-between bg-slate-100 items-stretch">
         <div className="bg-slate-500">
-          <QAList list={qa_list}></QAList>
+          <QAList list={qa_list} onSelectItem={onSelectItem}></QAList>
         </div>
         <div className="bg-slate-400">
           <DetailView query={selectedItem.query} answer={selectedItem.answer} rate={selectedItem.rate} rate_reason={selectedItem.rate_reason}></DetailView>
