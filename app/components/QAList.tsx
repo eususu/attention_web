@@ -68,7 +68,7 @@ export default function QAList(props:QAListProps) {
       </TableHeader>
       <TableBody>
         { props.list.map((item) => (
-          <TableRow key={item.id}>
+          <TableRow key={item.id} onClick={() => props.onSelectItem(item)}>
             <TableCell>
               {item.id}
             </TableCell>

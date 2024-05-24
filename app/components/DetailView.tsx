@@ -114,7 +114,7 @@ export default function DetailView(props:DetailViewProps) {
           </TableRow>
           <TableRow>
             <TableCell>답변</TableCell>
-            <TableCell><Textarea className="w-full" value={props.answer}></Textarea></TableCell>
+            <TableCell><Textarea className="w-full h-48" value={props.answer}></Textarea></TableCell>
           </TableRow>
           <TableRow>
             <TableCell>AI 평가</TableCell>
