@@ -1,31 +1,35 @@
 "use client"
 
 import React, { useState } from "react";
-import QAList from "../components/QAList";
-import DetailView from "../components/DetailView";
+import QAList from "./QAList";
+import DetailView from "./DetailView";
+import { Text } from '@fluentui/react-components'
+import Link from "next/link";
 
 
 type ListAndDetailProps = {
   list:Array<any>
+  page:number
 }
 export default function ListAndDetail(props:ListAndDetailProps) {
 
   const [selectedItem, setSelectedItem] = useState({
-    query: '김포공항 샐러드 가게?',
-    answer: '김포공항에는 ㅁ뭐가ㅝ가 블라블바합니다.',
-    rate: 'NO',
-    rate_reason: '아무리 생각해도 잘 모르겠습니다.',
+    query: '',
+    answer: '',
+    rate: '',
+    rate_reason: '',
   });
-
 
   return (
     <div className="grow w-full flex flex-row items-center justify-between bg-slate-100 items-stretch">
-      <div className="bg-slate-500">
+      <div className="bg-slate-500 flex flex-col items-center">
         <QAList list={props.list} onSelectItem={(item) => {
           setSelectedItem(item)
         }}></QAList>
-        <div className="text-center">
-        page 1, 2, 3 
+        <div className="text-center flex gap-2">
+        <Link href={`/view/${(props.page-1)}`}><Text size={400}>이전</Text></Link>
+        ...
+        <Link href={`/view/${(props.page+1)}`}><Text size={400}>다음</Text></Link>
         </div>
       </div>
       <div className="bg-slate-400">
