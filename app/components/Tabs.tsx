@@ -18,7 +18,7 @@ const useStyles = makeStyles({
     justifyContent: "flex-start",
     padding: "50px 20px",
     rowGap: "20px",
-  },
+  }
 });
 
 export default function Tabs(props: Partial<TabListProps>) {
@@ -26,7 +26,8 @@ export default function Tabs(props: Partial<TabListProps>) {
 
   return (
     <div className={useStyles.root}>
-      <TabList { ...props }>
+      <TabList className="flex" defaultSelectedValue={"full"} { ...props }>
+        <Tab value="summary">요약</Tab>
         <Tab value="ai">AI 평가 데이터</Tab>
         <Tab value="full">전체 데이터</Tab>
 
