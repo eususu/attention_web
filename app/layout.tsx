@@ -13,6 +13,8 @@ export const metadata: Metadata = {
 import process from 'process';
 import config from './scripts/config'
 import Tabs from "./components/Tabs";
+
+console.log(`layout init - ATTENTION_HOST=${process.env.ATTENTION_HOST}`)
 config.set_host(process.env.ATTENTION_HOST ?? "localhost:8008")
 
 
