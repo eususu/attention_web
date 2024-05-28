@@ -12,6 +12,7 @@ export const metadata: Metadata = {
 
 import process from 'process';
 import config from './scripts/config'
+import Tabs from "./components/Tabs";
 config.set_host(process.env.ATTENTION_HOST ?? "localhost:8008")
 
 
@@ -22,7 +23,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={inter.className} suppressHydrationWarning={true}><Providers>{children}</Providers></body>
+      <body className={inter.className} suppressHydrationWarning={true}><Providers>
+        <Tabs></Tabs>
+        {children}</Providers></body>
     </html>
   );
 }

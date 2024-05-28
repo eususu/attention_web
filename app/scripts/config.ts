@@ -1,6 +1,6 @@
 class Config {
 
-  host:string=""
+  host:string="localhost:8008"
 
   set_host(host:string) {
     this.host = host

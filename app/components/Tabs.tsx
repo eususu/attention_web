@@ -7,6 +7,8 @@ import {
   CalendarMonthFilled,
   bundleIcon,
 } from "@fluentui/react-icons";
+import { redirect } from "next/navigation";
+import Link from "next/link";
 
 
 const CalendarMonth = bundleIcon(CalendarMonthFilled, CalendarMonthRegular);
@@ -26,9 +28,9 @@ export default function Tabs(props: Partial<TabListProps>) {
 
   return (
     <div className={useStyles.root}>
-      <TabList className="flex" defaultSelectedValue={"full"} { ...props }>
-        <Tab value="summary">요약</Tab>
-        <Tab value="ai">AI 평가 데이터</Tab>
+      <TabList className="flex" defaultSelectedValue={"full"} { ...props } >
+        <Tab value="summary"><Link href="/view/1">요약</Link></Tab>
+        <Tab value="ai"><Link href="/view/2">AI 평가 데이터</Link></Tab>
         <Tab value="full">전체 데이터</Tab>
 
       </TabList>

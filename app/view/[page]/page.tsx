@@ -37,7 +37,6 @@ export default async function View({params, searchParams}) {
   return (
     <main className="flex min-h-screen flex-col items-center justify-between p-24">
       <div className="w-full">
-        <Tabs></Tabs>
       </div>
       <ListAndDetail page={parseInt(page)} list={qa_list}/>
       <div>
