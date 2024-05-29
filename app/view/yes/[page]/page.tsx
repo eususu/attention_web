@@ -1,7 +1,7 @@
-import config from '../../scripts/config'
+import config from '../../../scripts/config'
 
-import Tabs from "../../components/Tabs";
-import ListAndDetail from "../../components/ListAndDetail"
+import Tabs from "../../../components/Tabs";
+import ListAndDetail from "../../../components/ListAndDetail"
 
 
 async function load_qainfo_list(page:number) {

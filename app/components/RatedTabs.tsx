@@ -23,14 +23,14 @@ const useStyles = makeStyles({
   }
 });
 
-export default function Tabs(props: Partial<TabListProps>) {
+export default function RatedTabs(props: Partial<TabListProps>) {
 
 
   return (
     <div className={useStyles.root}>
       <TabList className="flex" defaultSelectedValue={"full"} { ...props } >
-        <Tab value="summary"><Link href="/summary">요약</Link></Tab>
-        <Tab value="ai"><Link href="/view">AI 평가 데이터</Link></Tab>
+        <Tab value="summary"><Link href="/summary">누락 데이터</Link></Tab>
+        <Tab value="ai"><Link href="/view/2">YES 평가 데이터</Link></Tab>
         <Tab value="full"><Link href="/full_view/0">전체 데이터</Link></Tab>
 
       </TabList>
