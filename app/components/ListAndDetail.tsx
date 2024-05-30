@@ -27,9 +27,9 @@ export default function ListAndDetail(props:ListAndDetailProps) {
           setSelectedItem(item)
         }}></QAList>
         <div className="text-center flex gap-2">
-        <Link href={`/view/${(props.page-1)}`}><Text size={400}>이전</Text></Link>
+        <Link href={`/full_view/${(props.page-1)}`}><Text size={400}>이전</Text></Link>
         ...
-        <Link href={`/view/${(props.page+1)}`}><Text size={400}>다음</Text></Link>
+        <Link href={`/full_view/${(props.page+1)}`}><Text size={400}>다음</Text></Link>
         </div>
       </div>
       <div className="bg-slate-400">
