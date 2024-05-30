@@ -28,7 +28,7 @@ export function Providers({ children }: {children: React.ReactNode}) {
   return (
     <RendererProvider renderer={renderer}>
       <SSRProvider>
-        <FluentProvider theme={blue.darkTheme}>{children}</FluentProvider>
+        <FluentProvider className={"h-screen"} theme={blue.lightTheme}>{children}</FluentProvider>
       </SSRProvider>
 
     </RendererProvider>

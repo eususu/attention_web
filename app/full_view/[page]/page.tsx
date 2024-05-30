@@ -1,5 +1,6 @@
 import config from '../../scripts/config'
 import ListAndDetail from "../../components/ListAndDetail"
+import api from '@/app/scripts/api'
 
 async function load_qainfo_list(page:number) {
   const service_name = 'kaai_poc'
@@ -25,7 +26,7 @@ export default async function View({params, searchParams}) {
   const { hi } = searchParams
   console.log(`page=${page}`)
   console.log(`searchParams=${hi}`)
-  const qa_list = await load_qainfo_list(parseInt(page))
+  const qa_list = await api.fetch.get_full_qalist('kaai_poc');
 
   return (
     <main className="flex min-h-screen flex-col items-center justify-between p-24">

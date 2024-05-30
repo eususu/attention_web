@@ -1,10 +1,12 @@
 import SummaryChart from "../components/SummaryChart";
+import SummaryPieChart from "../components/SummaryPieChart";
 import api from "../scripts/api";
 
 
 export default async function Summary() {
-  const summary = await api.fetch.get_summary('kaai_poc')
+  const {summary, pie} = await api.fetch.get_summary('kaai_poc')
   console.log(summary)
+  console.log(pie)
 
   return (
     <main className="w-full h-full">
@@ -15,8 +17,8 @@ export default async function Summary() {
           <SummaryChart series={summary} />
         </div>
         <div className="flex flex-row">
-          <div className="w-full">
-          pie chart
+          <div>
+            <SummaryPieChart series={pie}/>
           </div>
           <div className="w-full">
             empty

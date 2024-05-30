@@ -1,3 +1,4 @@
+import process from "process"
 class Config {
 
   host:string="localhost:8008"
@@ -10,6 +11,10 @@ class Config {
   get_host() {
     console.log(`get host -> ${this.host}`)
     return this.host
+  }
+
+  is_local() {
+    return (process.env['LOCAL_MODE'] == "ON") ? true : false
   }
 
 }

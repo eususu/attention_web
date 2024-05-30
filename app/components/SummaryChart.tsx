@@ -1,10 +1,8 @@
 "use client"
 import Chart from "react-apexcharts";
 
-
 type SummaryChartProps = {
   series:Array<any>
-
 }
 
 export default function SummaryChart(props:SummaryChartProps) {
@@ -19,36 +17,34 @@ export default function SummaryChart(props:SummaryChartProps) {
     categories.push(entry.day.substring(5)) //truncate year
     data.push(entry.count)
   })
+  const series=[{
+      name: 'kaai_poc',
+      data: data
+    }]
 
   const options = {
     chart: {
       type: "area",
-      dropShadow: {
-        enabled: true,
-        top: 3,
-        left: 2,
-        blur: 4,
-        opacity: 1,
-      },
+      height: "300px",
+    },
+    datalabels: {
+      enabled: false
     },
     stroke: {
       curve: 'smooth',
       width: 2
     },
-    fill: {
-      opacity: 0.8
-    },
     xaxis: {
-      categories: categories
+      categories: categories,
+      type: 'datetime'
+    },
+    yaxis: {
+      opposite: true
     },
     title: {
       text: '질문과 답변 사용량'
     },
   }
-  const series=[{
-      name: 'kaai_poc',
-      data: data
-    }]
 
   console.log(categories)
   console.log(data)
@@ -59,6 +55,7 @@ export default function SummaryChart(props:SummaryChartProps) {
       <Chart
       options={options}
       series={series}
+      type="area"
 
       width={"80%"}
       height={400}
