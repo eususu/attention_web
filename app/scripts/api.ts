@@ -1,45 +1,49 @@
 import config from './config'
+import { Summary } from './types';
 class FetchAPI {
-  async get_full_qalist(service_name:string): Promise<any>{
-    if (config.is_local()) {
-      return []
-    }
+  async _fetch(url:string, headers:any):Promise<any> {
+    const response = await fetch(`http://${config.get_host()}/api${url}`, {
+      cache: 'no-store',
+      headers: headers
 
-    const url = `http://${config.get_host()}/api/qa/${service_name}`
-    const response = fetch(url)
-    return response
-  }
-  async get_rated_qalist(service_name:string): Promise<any>{
-    const url = `http://${config.get_host()}/api/qa/${service_name}`
-    const response = fetch(url)
-    return response
-  }
-
-  async get_summary(service_name:string) {
-
-    if (config.is_local()) {
-      return {
-        summary: [
-          { day: '2024-05-24', count: 22 },
-          { day: '2024-05-25', count: 12 },
-          { day: '2024-05-26', count: 2 },
-          { day: '2024-05-27', count: 0 },
-          { day: '2024-05-28', count: 2 },
-          { day: '2024-05-29', count: 22 },
-          { day: '2024-05-30', count: 32 },
-        ],
-        pie: [
-          { kind:'yes', count: 271 },
-          { kind:'no', count: 32 },
-          { kind:'else', count: 71}
-        ]
-      }
-    }
-    const url = `http://${config.get_host()}/api/summary/${service_name}`
-    console.log(url)
-    const response = await fetch(url)
+    });
+    console.log(`request url is ${url}`)
     const body = await response.json()
     console.log(body)
+    return body 
+  }
+  async get_full_qalist(service_name:string, mode:string, page:number): Promise<any>{
+    if (config.is_local()) {
+      console.log('use local')
+      return []
+    }
+      console.log('use remote')
+
+    const url = `/qa/${service_name}?mode=${mode}&page=${page}`
+    const body = await this._fetch(url, [])
+    return body.qa_list
+  }
+  async get_rated_qalist(service_name:string): Promise<any>{
+    const url = `/qa/${service_name}`
+    const response = fetch(url)
+    return response
+  }
+
+  async get_summary(service_name:string):Promise<Summary> {
+
+    if (config.is_local()) {
+      return [
+          { day: '2024-05-24', total: 22, yes: 10, no: 3, empty: 1 },
+          { day: '2024-05-25', total: 12, yes: 10, no: 3, empty: 1 },
+          { day: '2024-05-26', total: 2, yes: 1, no: 0, empty: 1 },
+          { day: '2024-05-27', total: 0, yes: 10, no: 0, empty: 1 },
+          { day: '2024-05-28', total: 2, yes: 1, no: 0, empty: 1 },
+          { day: '2024-05-29', total: 22, yes: 8, no: 13, empty: 1 },
+          { day: '2024-05-30', total: 32, yes: 20, no: 11, empty: 1 },
+        ]
+    }
+    const url = `/summary/${service_name}`
+    const body = await this._fetch(url, [])
     return body.summary
   }
 

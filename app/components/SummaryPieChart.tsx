@@ -36,30 +36,19 @@ export default function SummaryPieChart(props:SummaryPieChartProps) {
       }
     }],
     title: {
-      text: 'QA 평가 결과'
+      text: '답변 품질 평가'
     },
   }
-  const series=[{
-      name: 'kaai_poc',
-      data: data
-    }]
-
-  console.log(categories)
-  console.log(data)
 
   return (
     <div>
-
       <Chart
       options={options}
       series={data}
       width={400}
+      height={400}
       type="pie"
-      >
-
-      </Chart>
-
-
+      ></Chart>
     </div>
 
   )
