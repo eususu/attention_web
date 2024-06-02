@@ -2,16 +2,8 @@
 import * as React from "react";
 import { makeStyles, Tab, TabList } from "@fluentui/react-components";
 import type { TabListProps } from "@fluentui/react-components";
-import {
-  CalendarMonthRegular,
-  CalendarMonthFilled,
-  bundleIcon,
-} from "@fluentui/react-icons";
-import { useRouter } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 
-
-
-const CalendarMonth = bundleIcon(CalendarMonthFilled, CalendarMonthRegular);
 const useStyles = makeStyles({
   root: {
     alignItems: "flex-start",
@@ -25,11 +17,19 @@ const useStyles = makeStyles({
 
 export default function Tabs(props: Partial<TabListProps>) {
   const router = useRouter();
+  const pathname = usePathname()
+  console.log(pathname)
 
+  let selection = "full"
+  if (pathname.startsWith('/summary')) {
+    selection = 'summary'
+  } else if (pathname.startsWith('/full_view')) {
+    selection = 'full'
+  }
 
   return (
     <div className={useStyles.root}>
-      <TabList className="flex" defaultSelectedValue={"full"} { ...props } onTabSelect={(event, data) => {
+      <TabList className="flex" defaultSelectedValue={selection} { ...props } onTabSelect={(event, data) => {
 
         console.log(`tab selected:${data.value}`)
         switch(data.value) {

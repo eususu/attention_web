@@ -1,5 +1,8 @@
 "use client"
 import Chart from "react-apexcharts";
+import {
+  Text
+} from '@fluentui/react-components'
 
 type SummaryPieChartProps = {
   series:Array<any>
@@ -35,13 +38,13 @@ export default function SummaryPieChart(props:SummaryPieChartProps) {
         }
       }
     }],
-    title: {
-      text: '답변 품질 평가'
-    },
   }
 
   return (
     <div>
+      <div className="ml-4 mt-4">
+        <Text weight="bold" size={400}>답변 품질 평가</Text>
+      </div>
       <Chart
       options={options}
       series={data}

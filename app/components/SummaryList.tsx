@@ -30,19 +30,23 @@ export default function SummaryList(props:SummaryListProps) {
   return (
     <div className="mx-12">
       <div className="mt-4">
-        <Text weight="bold" size={400}>RAG 데이터</Text>
+        <Text weight="bold" size={400}>
+          RAG 데이터
+        </Text>
       </div>
       <Table>
         <TableHeader>
-        {
-          columns.map((column) => {
-            return (
-              <TableHeaderCell key={column.name}>
-                <TableCellLayout media={column?.icon}>{column.name}</TableCellLayout>
-              </TableHeaderCell>
-            );
-          })
-        }
+          <TableRow>
+            {columns.map((column) => {
+              return (
+                <TableHeaderCell key={column.name}>
+                  <TableCellLayout media={column?.icon}>
+                    {column.name}
+                  </TableCellLayout>
+                </TableHeaderCell>
+              );
+            })}
+          </TableRow>
         </TableHeader>
         <TableBody>
           {props.series.map((summary) => {

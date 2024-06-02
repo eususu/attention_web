@@ -35,8 +35,8 @@ class FetchAPI {
       return [
           { day: '2024-05-24', total: 22, yes: 10, no: 3, empty: 1 },
           { day: '2024-05-25', total: 12, yes: 10, no: 3, empty: 1 },
-          { day: '2024-05-26', total: 2, yes: 1, no: 0, empty: 1 },
-          { day: '2024-05-27', total: 0, yes: 10, no: 0, empty: 1 },
+          { day: '2024-05-26', total: 2, yes: 1, no: 0, empty: 0 },
+          { day: '2024-05-27', total: 0, yes: 0, no: 0, empty: 0 },
           { day: '2024-05-28', total: 2, yes: 1, no: 0, empty: 1 },
           { day: '2024-05-29', total: 22, yes: 8, no: 13, empty: 1 },
           { day: '2024-05-30', total: 32, yes: 20, no: 11, empty: 1 },
