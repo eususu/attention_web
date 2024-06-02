@@ -35,12 +35,14 @@ export default function SummaryChart(props:SummaryChartProps) {
   }
 
   return (
+    <div className="mx-10">
+
     <Chart
       options={options}
       series={series}
       type="area"
-      width={1000}
       height={400}
     ></Chart>
+    </div>
   )
 }
