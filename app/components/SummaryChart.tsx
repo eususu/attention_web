@@ -1,5 +1,8 @@
 "use client"
 import Chart from "react-apexcharts";
+import {
+  Text
+} from '@fluentui/react-components'
 
 type SummaryChartProps = {
   title: string
@@ -29,13 +32,13 @@ export default function SummaryChart(props:SummaryChartProps) {
       categories: categories,
       type: 'datetime'
     },
-    title: {
-      text: props.title
-    },
   }
 
   return (
     <div className="mx-10">
+      <div>
+        <Text weight="bold" size={400}>{props.title}</Text>
+      </div>
 
     <Chart
       options={options}

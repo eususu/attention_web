@@ -31,14 +31,14 @@ export default async function Summary() {
   });
 
   return (
-    <main className="w-full h-full">
-      <div className="flex flex-col mt-10 mx-10">
-        <div className="flex flex-row px-5 divide-x-8">
-          <div className="basis-3/4 flex flex-col gap-2 divide-y-2">
+    <main className="bg-slate-100 overflow-y-scroll overflow-x-clip">
+      <div className="flex flex-col">
+        <div className="flex flex-row mt-10 divide-x-8">
+          <div className="flex flex-col gap-2 divide-y-2">
             <SummaryChart title={`RAG 사용량 (${line_total} 개)`} series={line_series} />
             <SummaryList series={summary} />
           </div>
-          <div className="basis-1/4">
+          <div className="w-fit">
             <SummaryPieChart series={pie_series} />
           </div>
         </div>
