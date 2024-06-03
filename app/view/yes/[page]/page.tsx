@@ -2,6 +2,9 @@ import config from '../../../scripts/config'
 
 import Tabs from "../../../components/Tabs";
 import ListAndDetail from "../../../components/ListAndDetail"
+import Layout from '../../page';
+import { ReactElement } from 'react';
+import RatedTabs from '@/app/components/RatedTabs';
 
 
 async function load_qainfo_list(page:number) {
@@ -35,14 +38,16 @@ export default async function View({params, searchParams}) {
   const qa_list = await load_qainfo_list(parseInt(page))
 
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-24">
-      <div className="w-full">
-        rated view
-      </div>
-      <ListAndDetail page={parseInt(page)} list={qa_list}/>
-      <div>
-        C
-      </div>
-    </main>
+    <>
+      <RatedTabs defaultSelectedValue="yes"></RatedTabs>
+      <main className="flex min-h-screen flex-col items-center justify-between p-16">
+        <div className="w-full">
+        </div>
+        <ListAndDetail page={parseInt(page)} list={qa_list} />
+        <div>
+          C
+        </div>
+      </main>
+    </>
   );
 }

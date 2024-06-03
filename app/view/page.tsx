@@ -1,12 +1,13 @@
+"use client"
 import { Tab, TabList } from "@fluentui/react-components";
 import RatedTabs from "../components/RatedTabs";
 
-export default function RatedView() {
+export default function View({ }) {
   return (
-    <div >
+    <>
       <RatedTabs></RatedTabs>
-
-    </div>
+      test
+    </>
 
   )
 }

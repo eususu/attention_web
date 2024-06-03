@@ -6,6 +6,7 @@ import api from "../scripts/api";
 
 export default async function Summary() {
   const summary = await api.fetch.get_summary('kaai_poc')
+  console.log('Summary')
   console.log(summary)
 
   const line_series:Array<any> = []
@@ -38,7 +39,7 @@ export default async function Summary() {
             <SummaryChart title={`RAG 사용량 (${line_total} 개)`} series={line_series} />
             <SummaryList series={summary} />
           </div>
-          <div className="w-fit">
+          <div className="">
             <SummaryPieChart series={pie_series} />
           </div>
         </div>

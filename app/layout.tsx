@@ -25,7 +25,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={inter.className} suppressHydrationWarning={true}><Providers>
+      <body className={inter.className + ' overflow-x-clip'} suppressHydrationWarning={true}><Providers>
         <Tabs></Tabs>
         {children}</Providers></body>
     </html>

@@ -37,7 +37,7 @@ export default function Tabs(props: Partial<TabListProps>) {
             router.push('/summary')
             return;
           case 'ai':
-            router.push('/view')
+            router.push('/view/yes/0')
             return;
           case 'full':
             router.push('/full_view/0');

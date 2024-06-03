@@ -7,8 +7,7 @@ import {
   CalendarMonthFilled,
   bundleIcon,
 } from "@fluentui/react-icons";
-import { redirect } from "next/navigation";
-import Link from "next/link";
+import { useRouter } from "next/navigation";
 
 
 const CalendarMonth = bundleIcon(CalendarMonthFilled, CalendarMonthRegular);
@@ -24,14 +23,29 @@ const useStyles = makeStyles({
 });
 
 export default function RatedTabs(props: Partial<TabListProps>) {
+  const router = useRouter()
 
 
   return (
     <div className={useStyles.root}>
-      <TabList className="flex" defaultSelectedValue={"full"} { ...props } >
-        <Tab value="summary"><Link href="/summary">누락 데이터</Link></Tab>
-        <Tab value="ai"><Link href="/view/2">YES 평가 데이터</Link></Tab>
-        <Tab value="full"><Link href="/full_view/0">전체 데이터</Link></Tab>
+      <TabList className="flex" defaultSelectedValue={"full"} { ...props } onTabSelect={(event, data) => {
+        switch(data.value) {
+          case "other":
+            router.push('/view/other/0');
+            break;
+          case "yes":
+            router.push('/view/yes/0');
+            break;
+          case "full":
+            router.push('/view/full/0');
+            break;
+
+        }
+
+      }}>
+        <Tab value="other">누락 데이터</Tab>
+        <Tab value="yes">YES 평가 데이터</Tab>
+        <Tab value="full">전체 데이터</Tab>
 
       </TabList>
 
