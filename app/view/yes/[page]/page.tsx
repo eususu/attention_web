@@ -5,37 +5,15 @@ import ListAndDetail from "../../../components/ListAndDetail"
 import Layout from '../../page';
 import { ReactElement } from 'react';
 import RatedTabs from '@/app/components/RatedTabs';
+import api from '@/app/scripts/api';
 
-
-async function load_qainfo_list(page:number) {
-  const service_name = 'kaai_poc'
-  const url=`http://${config.get_host()}/api/qa/${service_name}?page=${page}`
-  console.log(`load_qainfo_list - host: ${url}`)
-
-  const response = await fetch(
-    url,
-    {
-      method: 'get',
-      mode: 'cors',
-      cache: 'no-cache',
-    }
-  );
-  const body = await response.json()
-  console.log(`qa_list count is ${body.qa_list.length}`)
-
-  return body.qa_list
-}
-
-function onSelectItem(item:any) {
-  console.log(item)
-
-}
 export default async function View({params, searchParams}) {
   const { page } = params
   const { hi } = searchParams
   console.log(`page=${page}`)
   console.log(`searchParams=${hi}`)
-  const qa_list = await load_qainfo_list(parseInt(page))
+  const service_name = 'kaai_poc'
+  const qa_list = await api.fetch.get_full_qalist(service_name, "rated_yes", parseInt(page))
 
   return (
     <>

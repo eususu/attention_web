@@ -21,18 +21,18 @@ export default function ListAndDetail(props:ListAndDetailProps) {
   });
 
   return (
-    <div className="grow w-full flex flex-row items-center justify-between bg-slate-100 items-stretch">
-      <div className="bg-slate-500 flex flex-col items-center">
+    <div className="grow w-full flex flex-row items-center justify-between items-stretch gap-2">
+      <div className="flex flex-col items-center gap-4">
         <QAList list={props.list} onSelectItem={(item) => {
           setSelectedItem(item)
         }}></QAList>
-        <div className="text-center flex gap-2">
+        <div className="text-center flex gap-4">
         <Link href={`/full_view/${(props.page-1)}`}><Text size={400}>이전</Text></Link>
         ...
         <Link href={`/full_view/${(props.page+1)}`}><Text size={400}>다음</Text></Link>
         </div>
       </div>
-      <div className="bg-slate-400">
+      <div className="">
         <DetailView query={selectedItem.query} answer={selectedItem.answer} rate={selectedItem.rate} rate_reason={selectedItem.rate_reason}></DetailView>
       </div>
     </div>

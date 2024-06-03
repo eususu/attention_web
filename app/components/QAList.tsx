@@ -19,19 +19,14 @@ import {
   PresenceBadgeStatus,
   Avatar,
 } from "@fluentui/react-components";
+import RateIcon from "./RateIcon";
 
-function QAItem() {
-  return (
-    <div className="flex flex-row gap-2">
-      <div>id</div><div>김포공항 샐러드 가게?</div>
-    </div>
-  )
-}
 const columns = [
   {
     id: "id",
     columnKey: "query",
     label:"질문",
+    rate: "답변 품질",
   }
 ]
 
@@ -48,10 +43,13 @@ export default function QAList(props:QAListProps) {
           <TableRow key={column.id}>
             <TableCell className="w-12">
               {column.id}
-              </TableCell>
+            </TableCell>
             <TableCell>
               {column.label}
-              </TableCell>
+            </TableCell>
+            <TableCell>
+              {column.rate}
+            </TableCell>
           </TableRow>
         ))}
 
@@ -64,6 +62,9 @@ export default function QAList(props:QAListProps) {
             </TableCell>
             <TableCell>
               {item.query}
+            </TableCell>
+            <TableCell>
+              <RateIcon rate={item.rate}/>
             </TableCell>
           </TableRow>
         ))}
