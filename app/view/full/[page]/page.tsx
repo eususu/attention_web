@@ -16,7 +16,7 @@ export default async function View({params, searchParams}) {
       <main className="flex min-h-screen flex-col items-center justify-between p-16">
         <div className="w-full">
         </div>
-        <ListAndDetail page={parseInt(page)} list={qa_list} />
+        <ListAndDetail page={parseInt(page)} pathname='/view/full' list={qa_list} />
         <div>
           C
         </div>

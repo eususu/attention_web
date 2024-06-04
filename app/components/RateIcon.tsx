@@ -38,7 +38,7 @@ export default function RateIcon(props:Props) {
   
   return (
     <>
-    <Tag className={style}>{props.rate}</Tag>
+    <Tag className={style}>{props.rate ?? "미평가"}</Tag>
     </>
   )
 }

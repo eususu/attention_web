@@ -10,6 +10,7 @@ import Link from "next/link";
 type ListAndDetailProps = {
   list:Array<any>
   page:number
+  pathname:string
 }
 export default function ListAndDetail(props:ListAndDetailProps) {
 
@@ -27,9 +28,9 @@ export default function ListAndDetail(props:ListAndDetailProps) {
           setSelectedItem(item)
         }}></QAList>
         <div className="text-center flex gap-4">
-        <Link href={`/full_view/${(props.page-1)}`}><Text size={400}>이전</Text></Link>
+        <Link href={`${props.pathname}/${(props.page-1)}`}><Text size={400}>이전</Text></Link>
         ...
-        <Link href={`/full_view/${(props.page+1)}`}><Text size={400}>다음</Text></Link>
+        <Link href={`${props.pathname}/${(props.page+1)}`}><Text size={400}>다음</Text></Link>
         </div>
       </div>
       <div className="">
