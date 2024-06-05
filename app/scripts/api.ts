@@ -3,7 +3,7 @@ import { Summary } from './types';
 class FetchAPI {
   async _fetch(url:string, headers:any):Promise<any> {
     const response = await fetch(`http://${config.get_host()}/api${url}`, {
-      cache: 'no-store',
+      cache: 'no-cache',
       headers: headers
 
     });
