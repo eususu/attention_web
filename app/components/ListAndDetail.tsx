@@ -15,6 +15,7 @@ type ListAndDetailProps = {
 export default function ListAndDetail(props:ListAndDetailProps) {
 
   const [selectedItem, setSelectedItem] = useState({
+    date: '',
     query: '',
     answer: '',
     rate: '',
@@ -34,7 +35,7 @@ export default function ListAndDetail(props:ListAndDetailProps) {
         </div>
       </div>
       <div className="">
-        <DetailView query={selectedItem.query} answer={selectedItem.answer} rate={selectedItem.rate} rate_reason={selectedItem.rate_reason}></DetailView>
+        <DetailView query={selectedItem.query} answer={selectedItem.answer} rate={selectedItem.rate} rate_reason={selectedItem.rate_reason} date={selectedItem.date}></DetailView>
       </div>
     </div>
 

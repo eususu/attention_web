@@ -37,17 +37,17 @@ type QAListProps = {
 export default function QAList(props:QAListProps) {
 
   return (
-    <Table>
+    <Table className="border-2">
       <TableHeader>
         { columns.map((column) => (
           <TableRow key={column.id}>
-            <TableCell className="w-12">
+            <TableCell className="w-12 text-center">
               {column.id}
             </TableCell>
             <TableCell>
               {column.label}
             </TableCell>
-            <TableCell>
+            <TableCell className="w-24 text-center">
               {column.rate}
             </TableCell>
           </TableRow>
@@ -57,13 +57,13 @@ export default function QAList(props:QAListProps) {
       <TableBody>
         { props.list.map((item) => (
           <TableRow key={item.id} onClick={() => props.onSelectItem(item)}>
-            <TableCell>
+            <TableCell className="text-right">
               {item.id}
             </TableCell>
             <TableCell>
               {item.query}
             </TableCell>
-            <TableCell>
+            <TableCell className="w-24 text-center">
               <RateIcon rate={item.rate}/>
             </TableCell>
           </TableRow>

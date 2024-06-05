@@ -36,13 +36,14 @@ import {
   Avatar,
 } from "@fluentui/react-components";
 import { Props } from "next/script";
+import RateIcon from "./RateIcon";
 
 type DetailViewProps = {
   query:string,
   answer:string,
   rate:string,
-  rate_reason:string
-  
+  rate_reason:string,
+  date:string,
 }
 
 
@@ -121,7 +122,7 @@ export default function DetailView(props:DetailViewProps) {
           </TableRow>
           <TableRow>
             <TableCell>AI 평가</TableCell>
-            <TableCell>{props.rate}</TableCell>
+            <TableCell><RateIcon rate={props.rate}/></TableCell>
           </TableRow>
           <TableRow>
             <TableCell>평가 이유</TableCell>
@@ -130,6 +131,10 @@ export default function DetailView(props:DetailViewProps) {
           <TableRow>
             <TableCell>별점</TableCell>
             <TableCell><Rating/></TableCell>
+          </TableRow>
+          <TableRow>
+            <TableCell>등록일</TableCell>
+            <TableCell>{props.date}</TableCell>
           </TableRow>
 
         </TableBody>
