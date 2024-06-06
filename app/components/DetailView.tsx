@@ -35,16 +35,7 @@ import {
   PresenceBadgeStatus,
   Avatar,
 } from "@fluentui/react-components";
-import { Props } from "next/script";
 import RateIcon from "./RateIcon";
-
-type DetailViewProps = {
-  query:string,
-  answer:string,
-  rate:string,
-  rate_reason:string,
-  date:string,
-}
 
 
 const columns = [
@@ -64,7 +55,6 @@ const useStyles = makeStyles({
   },
 
   card: {
-    marginTop: "2em",
     width: "100%",
     maxWidth: "100%",
     height: "fit-content",
@@ -93,6 +83,15 @@ const useStyles = makeStyles({
 
   text: { margin: "0" },
 });
+
+type DetailViewProps = {
+  query?:string,
+  answer:string,
+  rate:string,
+  rate_reason:string,
+  date:string,
+}
+
 export default function DetailView(props:DetailViewProps) {
   const styles = useStyles();
   const items = [
@@ -110,6 +109,8 @@ export default function DetailView(props:DetailViewProps) {
 
       </CardHeader>
 
+      { props.query ?
+
       <Table size="small">
         <TableBody>
           <TableRow>
@@ -122,16 +123,25 @@ export default function DetailView(props:DetailViewProps) {
           </TableRow>
           <TableRow>
             <TableCell>AI 평가</TableCell>
-            <TableCell><RateIcon rate={props.rate}/></TableCell>
+            <TableCell>
+              <div className="flex flex-row justify-between">
+              <div><RateIcon rate={props.rate} /></div>
+              <Button>평가하기</Button>
+              </div>
+            </TableCell>
           </TableRow>
           <TableRow>
             <TableCell>평가 이유</TableCell>
-            <TableCell>{props.rate_reason}</TableCell>
+            <TableCell>{props.rate ? props.rate_reason : <Text className="text-red-600">아직 평가되지 않았습니다</Text>}</TableCell>
           </TableRow>
+          { 
+          /*
           <TableRow>
             <TableCell>별점</TableCell>
             <TableCell><Rating/></TableCell>
           </TableRow>
+          */
+          }
           <TableRow>
             <TableCell>등록일</TableCell>
             <TableCell>{props.date}</TableCell>
@@ -139,6 +149,9 @@ export default function DetailView(props:DetailViewProps) {
 
         </TableBody>
       </Table>
+      :
+      <></>
+      }
     </Card>
   )
 }

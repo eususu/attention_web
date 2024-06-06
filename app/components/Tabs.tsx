@@ -8,7 +8,7 @@ const useStyles = makeStyles({
   root: {
     alignItems: "flex-start",
     display: "flex",
-    flexDirection: "column",
+    flexDirection: "row",
     justifyContent: "flex-start",
     padding: "50px 20px",
     rowGap: "20px",
@@ -18,37 +18,51 @@ const useStyles = makeStyles({
 export default function Tabs(props: Partial<TabListProps>) {
   const router = useRouter();
   const pathname = usePathname()
-  console.log(pathname)
+  const paths = pathname.split('/')
+  const path = paths[1]
+  console.log(path)
 
   let selection = "full"
-  if (pathname.startsWith('/summary')) {
-    selection = 'summary'
-  } else if (pathname.startsWith('/full_view')) {
-    selection = 'full'
+  switch(path) {
+    case 'summary': selection = 'summary'; break;
+    case 'full': selection = 'full'; break;
+    case 'view': selection = 'view'; break;
+    case 'setting': selection = 'setting'; break;
   }
 
   return (
-    <div className={useStyles.root}>
-      <TabList className="flex" defaultSelectedValue={selection} { ...props } onTabSelect={(event, data) => {
+    <div className="flex flex-row justify-between">
+      <TabList className="w-full flex justify-between" defaultSelectedValue={selection} { ...props } onTabSelect={(event, data) => {
 
         console.log(`tab selected:${data.value}`)
         switch(data.value) {
           case 'summary':
             router.push('/summary')
             return;
-          case 'ai':
+          case 'view':
             router.push('/view/yes/0')
             return;
           case 'full':
             router.push('/full_view/0');
             return;
+          case 'setting':
+            router.push('/setting');
+            return;
         }
 
       }} >
-        <Tab value="summary">요약</Tab>
-        <Tab value="ai">AI 평가 데이터</Tab>
-        <Tab value="full">전체 데이터</Tab>
+        <div className="flex">
 
+        <Tab value="summary">요약</Tab>
+        <Tab value="view">AI 평가 데이터</Tab>
+        <Tab value="full">전체 데이터</Tab>
+        </div>
+
+        <div className="flex">
+        <Tab value="setting">설정</Tab>
+        </div>
+      </TabList>
+      <TabList>
       </TabList>
 
     </div>

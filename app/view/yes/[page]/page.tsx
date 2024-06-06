@@ -2,10 +2,11 @@ import config from '../../../scripts/config'
 
 import Tabs from "../../../components/Tabs";
 import ListAndDetail from "../../../components/ListAndDetail"
-import Layout from '../../page';
+import Layout from '../../../components/Layout';
 import { ReactElement } from 'react';
 import RatedTabs from '@/app/components/RatedTabs';
 import api from '@/app/scripts/api';
+import ViewLayout from '../../../components/Layout';
 
 export default async function View({params, searchParams}) {
   const { page } = params
@@ -17,15 +18,9 @@ export default async function View({params, searchParams}) {
 
   return (
     <>
-      <RatedTabs defaultSelectedValue="yes"></RatedTabs>
-      <main className="flex min-h-screen flex-col items-center justify-between p-16">
-        <div className="w-full">
-        </div>
+      <ViewLayout>
         <ListAndDetail page={parseInt(page)} list={qa_list} />
-        <div>
-          C
-        </div>
-      </main>
+      </ViewLayout>
     </>
   );
 }

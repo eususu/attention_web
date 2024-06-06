@@ -3,6 +3,8 @@ import * as React from "react";
 import { makeStyles, Tab, TabList } from "@fluentui/react-components";
 import type { TabListProps } from "@fluentui/react-components";
 import {
+  SettingsRegular,
+  SettingsFilled,
   CalendarMonthRegular,
   CalendarMonthFilled,
   bundleIcon,
@@ -11,24 +13,27 @@ import { useRouter } from "next/navigation";
 
 
 const CalendarMonth = bundleIcon(CalendarMonthFilled, CalendarMonthRegular);
+const Settings = bundleIcon(SettingsFilled, SettingsRegular)
 const useStyles = makeStyles({
   root: {
     alignItems: "flex-start",
     display: "flex",
     flexDirection: "column",
     justifyContent: "flex-start",
-    padding: "50px 20px",
     rowGap: "20px",
   }
 });
 
-export default function RatedTabs(props: Partial<TabListProps>) {
+type Props = {
+  defaultSelectedTab?:string
+}
+
+export default function RatedTabs(props: Props) {
   const router = useRouter()
 
-
   return (
-    <div className={useStyles.root}>
-      <TabList className="flex" defaultSelectedValue={"full"} { ...props } onTabSelect={(event, data) => {
+    <div className={useStyles().root}>
+      <TabList className="flex" defaultSelectedValue={props.defaultSelectedTab} onTabSelect={(event, data) => {
         switch(data.value) {
           case "other":
             router.push('/view/other/0');
@@ -39,18 +44,15 @@ export default function RatedTabs(props: Partial<TabListProps>) {
           case "yes":
             router.push('/view/yes/0');
             break;
-          case "full":
-            router.push('/view/full/0');
+          case "settings":
+            router.push('/view/settings');
             break;
-
         }
-
       }}>
         <Tab value="other">평가되지 않은 데이터</Tab>
         <Tab value="noelse">NO, ELSE 데이터</Tab>
         <Tab value="yes">YES 데이터</Tab>
-        <Tab value="full">전체 데이터</Tab>
-
+        <Tab icon={<Settings/>} value="settings">AI 평가 설정</Tab>
       </TabList>
 
     </div>

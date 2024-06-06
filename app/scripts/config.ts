@@ -1,7 +1,12 @@
 import process from "process"
 class Config {
 
-  host:string="localhost:8008"
+  host:string=""
+
+  constructor() {
+    console.log(`layout init - ATTENTION_HOST=${process.env.ATTENTION_HOST}`)
+    this.set_host(process.env.ATTENTION_HOST ?? "localhost:8008")
+  }
 
   set_host(host:string) {
     this.host = host

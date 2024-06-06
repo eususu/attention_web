@@ -1,9 +1,6 @@
-import config from '../../../scripts/config'
-
-import Tabs from "../../../components/Tabs";
 import ListAndDetail from "../../../components/ListAndDetail"
-import RatedTabs from '@/app/components/RatedTabs';
 import api from '@/app/scripts/api';
+import ViewLayout from '@/app/components/Layout';
 
 export default async function View({params, searchParams}) {
   const { page } = params
@@ -15,15 +12,14 @@ export default async function View({params, searchParams}) {
 
   return (
     <>
-      <RatedTabs defaultSelectedValue="other"></RatedTabs>
-      <main className="flex min-h-screen flex-col items-center justify-between p-16">
+      <ViewLayout>
         <div className="w-full">
         </div>
         <ListAndDetail page={parseInt(page)} list={qa_list} />
         <div>
           C
         </div>
-      </main>
+      </ViewLayout>
     </>
   );
 }

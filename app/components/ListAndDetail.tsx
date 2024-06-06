@@ -5,12 +5,12 @@ import QAList from "./QAList";
 import DetailView from "./DetailView";
 import { Text } from '@fluentui/react-components'
 import Link from "next/link";
+import { OverlayScrollbarsComponent } from "overlayscrollbars-react";
 
 
 type ListAndDetailProps = {
   list:Array<any>
   page:number
-  pathname:string
 }
 export default function ListAndDetail(props:ListAndDetailProps) {
 
@@ -23,20 +23,15 @@ export default function ListAndDetail(props:ListAndDetailProps) {
   });
 
   return (
-    <div className="grow w-full flex flex-row items-center justify-between items-stretch gap-2">
-      <div className="flex flex-col items-center gap-4">
+    <div className="w-full h-full max-w-5xl flex flex-col gap-2 overflow-y-hidden p-4">
+      <div className="h-74">
+        <DetailView query={selectedItem.query} answer={selectedItem.answer} rate={selectedItem.rate} rate_reason={selectedItem.rate_reason} date={selectedItem.date}></DetailView>
+      </div>
+      <div className="overflow-y-scroll">
         <QAList list={props.list} onSelectItem={(item) => {
           setSelectedItem(item)
         }}></QAList>
-        <div className="text-center flex gap-4">
-        <Link href={`${props.pathname}/${(props.page-1)}`}><Text size={400}>이전</Text></Link>
-        ...
-        <Link href={`${props.pathname}/${(props.page+1)}`}><Text size={400}>다음</Text></Link>
-        </div>
-      </div>
-      <div className="">
-        <DetailView query={selectedItem.query} answer={selectedItem.answer} rate={selectedItem.rate} rate_reason={selectedItem.rate_reason} date={selectedItem.date}></DetailView>
-      </div>
+      </div >
     </div>
 
   )

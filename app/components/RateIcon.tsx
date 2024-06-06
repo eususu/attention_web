@@ -13,6 +13,7 @@ const table = {
 
 const useStyles = makeStyles({
   'ANYTHING': {
+    backgroundColor: tokens.colorPaletteAnchorBackground2,
   },
   'YES': {
     backgroundColor: tokens.colorStatusSuccessBorder1,
@@ -27,6 +28,7 @@ const useStyles = makeStyles({
   },
 
 })
+
 export default function RateIcon(props:Props) {
   const useStyle = useStyles()
   let style = useStyle.ANYTHING;
