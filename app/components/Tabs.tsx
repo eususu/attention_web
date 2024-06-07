@@ -54,8 +54,7 @@ export default function Tabs(props: Partial<TabListProps>) {
         <div className="flex">
 
         <Tab value="summary">요약</Tab>
-        <Tab value="view">AI 평가 데이터</Tab>
-        <Tab value="full">전체 데이터</Tab>
+        <Tab value="view">데이터 및 평가</Tab>
         </div>
 
         <div className="flex">
