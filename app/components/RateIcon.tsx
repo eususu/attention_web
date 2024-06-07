@@ -4,7 +4,7 @@ import {
   tokens,
 } from '@fluentui/react-components'
 type Props = {
-  rate:string
+  rate:string|null
 }
 
 const table = {
@@ -31,16 +31,18 @@ const useStyles = makeStyles({
 
 export default function RateIcon(props:Props) {
   const useStyle = useStyles()
-  let style = useStyle.ANYTHING;
+  const rate = props.rate ?? '미평가';
+  let style;
   switch(props.rate) {
     case 'YES': style = useStyle.YES; break;
     case 'NO': style = useStyle.NO; break;
     case 'ELSE': style = useStyle.ELSE; break;
+    default: style = useStyle.ANYTHING; break;
   }
   
   return (
     <>
-    <Tag className={style}>{props.rate ?? "미평가"}</Tag>
+    <Tag className={style}>{rate}</Tag>
     </>
   )
 }

@@ -15,17 +15,18 @@ type ListAndDetailProps = {
 export default function ListAndDetail(props:ListAndDetailProps) {
 
   const [selectedItem, setSelectedItem] = useState({
+    id:-1,
     date: '',
     query: '',
     answer: '',
-    rate: '',
-    rate_reason: '',
+    rate: null,
+    rate_reason: null,
   });
 
   return (
     <div className="w-full h-full max-w-5xl flex flex-col gap-2 overflow-y-hidden p-4">
       <div className="h-74">
-        <DetailView query={selectedItem.query} answer={selectedItem.answer} rate={selectedItem.rate} rate_reason={selectedItem.rate_reason} date={selectedItem.date}></DetailView>
+        <DetailView key={selectedItem.id} query={selectedItem.query} answer={selectedItem.answer} rate={selectedItem.rate} rate_reason={selectedItem.rate_reason} date={selectedItem.date}></DetailView>
       </div>
       <div className="overflow-y-scroll">
         <QAList list={props.list} onSelectItem={(item) => {

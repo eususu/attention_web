@@ -36,6 +36,8 @@ import {
   Avatar,
 } from "@fluentui/react-components";
 import RateIcon from "./RateIcon";
+import llm from "../scripts/llm_api";
+import { useEffect, useState } from "react";
 
 
 const columns = [
@@ -87,20 +89,21 @@ const useStyles = makeStyles({
 type DetailViewProps = {
   query?:string,
   answer:string,
-  rate:string,
-  rate_reason:string,
+  rate:string|null,
+  rate_reason:string|null,
   date:string,
 }
 
 export default function DetailView(props:DetailViewProps) {
   const styles = useStyles();
-  const items = [
-    {
-      id: 37,
-      query:"querstion"
-    }
 
-  ]
+
+  const [direct_rate, setDirectRate] = useState({
+    rate: props.rate,
+    rate_reason: props.rate_reason,
+  })
+
+
   return (
     <Card className={styles.card}>
       <CardHeader
@@ -125,14 +128,21 @@ export default function DetailView(props:DetailViewProps) {
             <TableCell>AI 평가</TableCell>
             <TableCell>
               <div className="flex flex-row justify-between">
-              <div><RateIcon rate={props.rate} /></div>
-              <Button>평가하기</Button>
+              <div><RateIcon rate={direct_rate.rate} /></div>
+              <Button onClick={async() => {
+                const {rate, rate_reason} = await llm.inference('query')
+                setDirectRate({
+                    rate: rate,
+                    rate_reason: rate_reason
+                  })
+
+              }}>평가하기</Button>
               </div>
             </TableCell>
           </TableRow>
           <TableRow>
             <TableCell>평가 이유</TableCell>
-            <TableCell>{props.rate ? props.rate_reason : <Text className="text-red-600">아직 평가되지 않았습니다</Text>}</TableCell>
+            <TableCell>{direct_rate.rate ? direct_rate.rate_reason : <Text className="text-red-600">아직 평가되지 않았습니다</Text>}</TableCell>
           </TableRow>
           { 
           /*

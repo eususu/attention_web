@@ -27,7 +27,7 @@ function Item(props: DataProps) {
         <CardHeader
           header={<Text size={400}>{props.header}</Text>}
           description={<Caption1>{props.description}</Caption1>}
-          action=<Button appearance="transparent">...</Button>
+          action={<Button appearance="transparent">...</Button>}
         />
       </Card>
     </>
