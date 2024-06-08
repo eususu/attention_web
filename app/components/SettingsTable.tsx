@@ -1,5 +1,5 @@
 "use client"
-import { Text, Card, CardHeader, Button, Caption1 } from "@fluentui/react-components";
+import { Text, Card, CardHeader, Button, Caption1, CardFooter } from "@fluentui/react-components";
 import RatePrompt from "./RatePrompt";
 import { useState } from "react";
 
@@ -23,28 +23,35 @@ function Item(props: DataProps) {
   const [ selected, setSelected ] = useState(false)
   return (
     <>
-      <Card appearance="filled-alternative" onClick={() => {
-        console.log('click')
+      <Card appearance="filled-alternative"
 
-      }}
-
-      selected={selected}
-
-      onSelectionChange={(_, {selected}) => {
-        setSelected(selected)
-      }}
       >
         <CardHeader
           header={<Text size={400}>{props.header}</Text>}
           description={<Caption1>{props.description}</Caption1>}
           action={<Button appearance="transparent">...</Button>}
+          onClick={() => {
+            setSelected(!selected);
+          }}
         />
 
-        {selected ? 
-      <RatePrompt></RatePrompt>
 
-        : null
-      }
+        <CardFooter onClick={(event) => {
+          event.preventDefault();
+          event.stopPropagation();
+
+
+        }}>
+          {!selected ? null :
+            <div className="flex flex-col mx-20">
+              <ul>
+                <li>system 속성은 블라블라.</li>
+                <li>user 속성은 블라블라.</li>
+              </ul>
+              <RatePrompt></RatePrompt>
+            </div>
+          }
+        </CardFooter>
       </Card>
     </>
   );
