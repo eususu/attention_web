@@ -1,3 +1,4 @@
+import { M_PLUS_1 } from 'next/font/google';
 import config from './config'
 import { Summary } from './types';
 class FetchAPI {
@@ -15,7 +16,11 @@ class FetchAPI {
   async get_full_qalist(service_name:string, mode:string, page:number): Promise<any>{
     if (config.is_local()) {
       console.log('use local')
-      return []
+      return [
+        {id:1, query:'hi', answer:'hi', rate:'YES', date:'2024-04-04 11:11:11'},
+        {id:2, query:'h2i', answer:'hi2', rate:'YES', date:'2024-04-04 11:11:11'},
+
+      ]
     }
       console.log('use remote')
 

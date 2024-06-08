@@ -1,6 +1,7 @@
 "use client"
 import { Text, Card, CardHeader, Button, Caption1 } from "@fluentui/react-components";
 import RatePrompt from "./RatePrompt";
+import { useState } from "react";
 
 
 type Props = {
@@ -18,17 +19,32 @@ const data:Array<DataProps> = [
 ]
 
 function Item(props: DataProps) {
+
+  const [ selected, setSelected ] = useState(false)
   return (
     <>
       <Card appearance="filled-alternative" onClick={() => {
         console.log('click')
 
-      }}>
+      }}
+
+      selected={selected}
+
+      onSelectionChange={(_, {selected}) => {
+        setSelected(selected)
+      }}
+      >
         <CardHeader
           header={<Text size={400}>{props.header}</Text>}
           description={<Caption1>{props.description}</Caption1>}
           action={<Button appearance="transparent">...</Button>}
         />
+
+        {selected ? 
+      <RatePrompt></RatePrompt>
+
+        : null
+      }
       </Card>
     </>
   );
@@ -45,7 +61,6 @@ export default function SettingsTable() {
         <li>
         </li>
       </ul>
-      <RatePrompt></RatePrompt>
     </>
   );
 }
