@@ -44,10 +44,6 @@ function Item(props: DataProps) {
         }}>
           {!selected ? null :
             <div className="flex flex-col mx-20">
-              <ul>
-                <li>system 속성은 블라블라.</li>
-                <li>user 속성은 블라블라.</li>
-              </ul>
               <RatePrompt></RatePrompt>
             </div>
           }

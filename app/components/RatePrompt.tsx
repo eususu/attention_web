@@ -1,7 +1,8 @@
 import {
   Button,
   Input,
-  Select, Table, TableBody, TableCell, TableCellActions, TableCellLayout, TableHeader, TableHeaderCell, TableRow
+  Select, Table, TableBody, TableCell, TableCellActions, TableCellLayout, TableHeader, TableHeaderCell, TableRow,
+  Textarea
 } from "@fluentui/react-components";
 
 import {
@@ -15,6 +16,21 @@ import { useState } from "react";
 
 const EditIcon = bundleIcon(EditFilled, EditRegular);
 const DeleteIcon = bundleIcon(DeleteFilled, DeleteRegular);
+
+type RoleProp = {
+  type: string
+  edit_mode: boolean
+
+}
+function Role(props:RoleProp) {
+  return (
+    <Select defaultValue={props.type} disabled={!props.edit_mode}>
+      <option value="system">시스템</option>
+      <option value="user">사용자</option>
+    </Select>
+  )
+
+}
 
 export default function RatePrompt() {
 
@@ -39,14 +55,11 @@ export default function RatePrompt() {
               return (
                 <TableRow key={index}>
                   <TableCell>
-                    <Select defaultValue={prompt.type} disabled={!edit_mode}>
-                      <option value="system">시스템</option>
-                      <option value="user">사용자</option>
-                    </Select>
+                    <Role type={prompt.type} edit_mode={edit_mode}/>
                   </TableCell>
                   <TableCell>
                     {edit_mode ? (
-                      <textarea>{prompt.prompt}</textarea>
+                      <Textarea className="w-full" value={prompt.prompt}/>
                     ) : (
                       prompt.prompt
                     )}
@@ -75,13 +88,6 @@ export default function RatePrompt() {
             })
 
         }
-        <TableRow>
-          <TableCell><Select>
-            <option>시스템</option>
-            <option>사용자</option>
-            </Select></TableCell>
-          <TableCell><Input placeholder="새 프롬프트를 입력하세요."/></TableCell>
-        </TableRow>
       </TableBody>
 
     </Table>
