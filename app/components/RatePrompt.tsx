@@ -22,6 +22,7 @@ export default function RatePrompt() {
     {type:"system", prompt: "you are helpful assistant."},
     {type:"user", prompt: "잘 분류하세요."},
   ]
+  const [edit_mode, setEditMode] = useState(false);
   return (
     <>
     <Table>
@@ -35,31 +36,41 @@ export default function RatePrompt() {
       <TableBody>
         {
             prompts.map((prompt, index) => {
-              const [edit_mode, setEditMode] = useState(false);
               return (
-                <TableRow>
-                  <TableCell>{prompt.type}</TableCell>
-                  <TableCell>{edit_mode? <textarea>{prompt.prompt}</textarea> :prompt.prompt}</TableCell>
+                <TableRow key={index}>
+                  <TableCell>
+                    <Select defaultValue={prompt.type} disabled={!edit_mode}>
+                      <option value="system">시스템</option>
+                      <option value="user">사용자</option>
+                    </Select>
+                  </TableCell>
+                  <TableCell>
+                    {edit_mode ? (
+                      <textarea>{prompt.prompt}</textarea>
+                    ) : (
+                      prompt.prompt
+                    )}
+                  </TableCell>
                   <TableCell>
                     <TableCellActions>
                       <Button
                         icon={<EditIcon />}
                         appearance="subtle"
                         onClick={() => {
-                          setEditMode(!edit_mode)
+                          setEditMode(!edit_mode);
                         }}
                       />
                       <Button
                         icon={<DeleteIcon />}
                         appearance="subtle"
                         onClick={() => {
-                          delete prompts[index]
+                          delete prompts[index];
                         }}
                       />
-
                     </TableCellActions>
                   </TableCell>
-                </TableRow>)
+                </TableRow>
+              );
 
             })
 
