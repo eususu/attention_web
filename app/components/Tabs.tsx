@@ -20,7 +20,6 @@ export default function Tabs(props: Partial<TabListProps>) {
   const pathname = usePathname()
   const paths = pathname.split('/')
   const path = paths[1]
-  console.log(path)
 
   let selection = "full"
   switch(path) {
@@ -33,8 +32,6 @@ export default function Tabs(props: Partial<TabListProps>) {
   return (
     <div className="flex flex-row justify-between">
       <TabList className="w-full flex justify-between" defaultSelectedValue={selection} { ...props } onTabSelect={(event, data) => {
-
-        console.log(`tab selected:${data.value}`)
         switch(data.value) {
           case 'summary':
             router.push('/summary')

@@ -35,7 +35,7 @@ export default function SummaryChart(props:SummaryChartProps) {
   }
 
   return (
-    <div className="mx-10" style={{width: '80%'}}>
+    <div className="mx-10 max-w-7xl" style={{width: '80%'}}>
       <div>
         <Text weight="bold" size={400}>{props.title}</Text>
       </div>

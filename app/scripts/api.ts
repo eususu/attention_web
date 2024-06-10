@@ -1,4 +1,3 @@
-import { M_PLUS_1 } from 'next/font/google';
 import config from './config'
 import { Summary } from './types';
 async function _fetch(url: string, headers: any): Promise < any > {
@@ -48,6 +47,14 @@ class FetchAPI {
   }
 
   async get_summary(service_name:string):Promise<Summary> {
+    console.log('begin summary')
+    const now = new Date();
+    console.log(now)
+    const before_month = new Date(now.setMonth(now.getMonth()-1));
+    console.log(before_month)
+    const start_date = `${before_month.getFullYear()}-${before_month.getMonth()+1}-${before_month.getDate()}`
+    console.log(start_date)
+
 
     if (config.is_local()) {
       return [
@@ -60,7 +67,7 @@ class FetchAPI {
           { day: '2024-05-30', total: 32, yes: 20, no: 11, empty: 1 },
         ]
     }
-    const url = `/summary/${service_name}`
+    const url = `/summary/${service_name}?start_date=${start_date}`
     const body = await _fetch(url, [])
     return body.summary
   }
@@ -70,7 +77,7 @@ class FetchAPI {
 
 class RateAPI {
   async rate_single(service_name:string, uuid:string):Promise<any> {
-    const url = `http://172.16.10.45:8008/api/rate/${service_name}?uuid=${uuid}`
+    const url = `http://${config.get_host()}/api/rate/${service_name}?uuid=${uuid}`
     const body = await client_fetch(url, [])
     console.log(body)
     return body

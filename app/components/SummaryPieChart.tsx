@@ -12,15 +12,10 @@ export default function SummaryPieChart(props:SummaryPieChartProps) {
   const categories:Array<string> = []
   const data:Array<string> = []
 
-  console.log('go SummaryChart')
-  console.log(props.series)
-
   props.series.forEach((entry) =>{
     categories.push(entry.kind)
     data.push(entry.count)
   })
-  console.log(categories)
-  console.log(data)
 
   const options = {
     chart: {

@@ -4,8 +4,8 @@ class Config {
   host:string=""
 
   constructor() {
-    console.log(`layout init - ATTENTION_HOST=${process.env.ATTENTION_HOST}`)
-    this.set_host(process.env.ATTENTION_HOST ?? "localhost:8008")
+    console.log(`layout init - NEXT_PUBLIC_ATTENTION_HOST=${process.env.NEXT_PUBLIC_ATTENTION_HOST}`)
+    this.set_host(process.env.NEXT_PUBLIC_ATTENTION_HOST ?? "localhost:8008")
   }
 
   set_host(host:string) {
@@ -23,8 +23,6 @@ class Config {
   }
 
 }
-
-
 
 const config = new Config()
 export default config
