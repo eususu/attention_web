@@ -1,18 +1,31 @@
 import { M_PLUS_1 } from 'next/font/google';
 import config from './config'
 import { Summary } from './types';
-class FetchAPI {
-  async _fetch(url:string, headers:any):Promise<any> {
-    const response = await fetch(`http://${config.get_host()}/api${url}`, {
-      cache: 'no-cache',
-      headers: headers
+async function _fetch(url: string, headers: any): Promise < any > {
+  const response = await fetch(`http://${config.get_host()}/api${url}`, {
+    cache: 'no-cache',
+    headers: headers
 
-    });
-    console.log(`request url is ${url}`)
+  });
+  console.log(`request url is ${url}`)
     const body = await response.json()
     console.log(body)
-    return body 
-  }
+    return body
+}
+
+async function client_fetch(url: string, headers: any): Promise < any > {
+  const response = await fetch(url, {
+    cache: 'no-cache',
+    headers: headers
+
+  });
+  console.log(`request url is ${url}`)
+    const body = await response.json()
+    console.log(body)
+    return body
+}
+
+class FetchAPI {
   async get_full_qalist(service_name:string, mode:string, page:number): Promise<any>{
     if (config.is_local()) {
       console.log('use local')
@@ -25,7 +38,7 @@ class FetchAPI {
       console.log('use remote')
 
     const url = `/qa/${service_name}?mode=${mode}&page=${page}`
-    const body = await this._fetch(url, [])
+    const body = await _fetch(url, [])
     return body.qa_list
   }
   async get_rated_qalist(service_name:string): Promise<any>{
@@ -48,14 +61,27 @@ class FetchAPI {
         ]
     }
     const url = `/summary/${service_name}`
-    const body = await this._fetch(url, [])
+    const body = await _fetch(url, [])
     return body.summary
   }
 
+} // end of FetchAPI
+
+
+class RateAPI {
+  async rate_single(service_name:string, uuid:string):Promise<any> {
+    const url = `http://172.16.10.45:8008/api/rate/${service_name}?uuid=${uuid}`
+    const body = await client_fetch(url, [])
+    console.log(body)
+    return body
+  }
+
 }
+
 class LocalAPI {
 
   fetch = new FetchAPI()
+  rate = new RateAPI()
 
 }
 

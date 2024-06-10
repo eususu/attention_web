@@ -52,13 +52,8 @@ export default function Tabs(props: Partial<TabListProps>) {
 
       }} >
         <div className="flex">
-
-        <Tab value="summary">요약</Tab>
-        <Tab value="view">데이터 및 평가</Tab>
-        </div>
-
-        <div className="flex">
-        <Tab value="setting">설정</Tab>
+          <Tab value="summary">요약</Tab>
+          <Tab value="view">데이터 및 평가</Tab>
         </div>
       </TabList>
       <TabList>

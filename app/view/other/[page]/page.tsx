@@ -13,12 +13,7 @@ export default async function View({params, searchParams}) {
   return (
     <>
       <ViewLayout>
-        <div className="w-full">
-        </div>
         <ListAndDetail page={parseInt(page)} list={qa_list} />
-        <div>
-          C
-        </div>
       </ViewLayout>
     </>
   );
