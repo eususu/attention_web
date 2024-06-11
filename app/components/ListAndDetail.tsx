@@ -25,7 +25,7 @@ export default function ListAndDetail(props:ListAndDetailProps) {
   });
 
   return (
-    <div className="w-full h-full max-w-5xl flex flex-col gap-2 overflow-y-hidden p-4">
+    <div className="w-full h-full max-w-5xl 2xl:max-w-7xl flex flex-col 2xl:flex-row gap-2 overflow-y-hidden p-4">
       <div className="h-74">
         <DetailView key={selectedItem.id} {...selectedItem}></DetailView>
       </div>

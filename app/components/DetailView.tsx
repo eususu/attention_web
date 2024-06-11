@@ -128,6 +128,10 @@ export default function DetailView(props:DetailViewProps) {
             <TableCell><Text className="w-full">{props.uuid}</Text></TableCell>
           </TableRow>
           <TableRow>
+            <TableCell>등록일</TableCell>
+            <TableCell>{props.date}</TableCell>
+          </TableRow>
+          <TableRow>
             <TableCell className="w-20">질문</TableCell>
             <TableCell>{props.query}</TableCell>
           </TableRow>
@@ -167,10 +171,6 @@ export default function DetailView(props:DetailViewProps) {
           </TableRow>
           */
           }
-          <TableRow>
-            <TableCell>등록일</TableCell>
-            <TableCell>{props.date}</TableCell>
-          </TableRow>
 
         </TableBody>
       </Table>

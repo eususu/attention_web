@@ -32,12 +32,14 @@ export default async function Summary() {
   });
 
   return (
-    <main className="overflow-x-clip" style={{height: 'calc(100vh - 44px)'}}>
+    <main className="overflow-x-clip">
       <div className="flex flex-col">
-        <div className="flex flex-row justify-center mt-4 divide-x-8">
-          <div className="max-w-7xl flex flex-col gap-2 divide-y-2 overflow-y-hidden">
+        <div className="flex flex-row justify-center divide-x-8">
+          <div className="2xl:max-w-7xl flex flex-col gap-2 divide-y-2">
             <SummaryChart title={`RAG 사용량 (${line_series.length}일간 ${line_total} 개)`} series={line_series} />
-            <SummaryList series={summary} />
+            <div className="2xl:h-3/6 overflow-y-scroll">
+              <SummaryList series={summary.reverse()} />
+            </div>
           </div>
           <div className="">
             <SummaryPieChart series={pie_series} />

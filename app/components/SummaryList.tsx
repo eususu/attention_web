@@ -28,7 +28,7 @@ const columns = [
 
 export default function SummaryList(props:SummaryListProps) {
   return (
-    <div className="mx-12 overflow-y-scroll">
+    <div className="mx-12">
       <div className="mt-4">
         <Text weight="bold" size={400}>
           RAG 데이터
