@@ -23,7 +23,8 @@ const columns = [
   {name:"전체 사용량"},
   {name:"적절한 응답", icon: <CheckmarkCircleFilled className="text-lime-600"/>},
   {name:"정보 부족", icon: <WarningRegular className="text-orange-600"/>},
-  {name:"평가 필요", icon: <ErrorCircleFilled className="text-red-500"/>}
+  {name:"검토 필요", icon: <WarningRegular className="text-red-600"/>},
+  {name:"미평가", icon: <ErrorCircleFilled className="text-orange-600"/>}
 ]
 
 export default function SummaryList(props:SummaryListProps) {
@@ -56,6 +57,7 @@ export default function SummaryList(props:SummaryListProps) {
                 <TableCell>{summary.total}</TableCell>
                 <TableCell>{summary.yes}</TableCell>
                 <TableCell>{summary.no}</TableCell>
+                <TableCell>{summary.total-summary.empty-summary.yes-summary.no}</TableCell>
                 <TableCell>{summary.empty}</TableCell>
               </TableRow>
             );
