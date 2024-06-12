@@ -1,5 +1,5 @@
 "use client"
-import { Table, TableBody, TableCell, TableCellLayout, TableHeader, TableHeaderCell, TableRow } from "@fluentui/react-components"
+import { Table, TableBody, TableCell, TableCellLayout, TableHeader, TableHeaderCell, TableRow, tokens } from "@fluentui/react-components"
 import { Summary } from "../scripts/types"
 
 type SummaryListProps = {
@@ -12,6 +12,7 @@ import {
   CheckmarkCircleFilled,
   WarningRegular,
   ErrorCircleFilled,
+  QuestionCircleRegular,
 } from "@fluentui/react-icons";
 
 import {
@@ -22,19 +23,13 @@ const columns = [
   {name:"날짜", icon: <CalendarRegular/>},
   {name:"전체 사용량"},
   {name:"적절한 응답", icon: <CheckmarkCircleFilled className="text-lime-600"/>},
-  {name:"정보 부족", icon: <WarningRegular className="text-orange-600"/>},
-  {name:"검토 필요", icon: <WarningRegular className="text-red-600"/>},
-  {name:"미평가", icon: <ErrorCircleFilled className="text-orange-600"/>}
+  {name:"정보 부족", icon: <WarningRegular className="text-orange-400"/>},
+  {name:"검토 필요", icon: <ErrorCircleFilled className="text-yellow-500"/>},
+  {name:"미평가", icon: <QuestionCircleRegular className="text-slate-600"/>}
 ]
 
 export default function SummaryList(props:SummaryListProps) {
   return (
-    <div className="mx-12">
-      <div className="mt-4">
-        <Text weight="bold" size={400}>
-          RAG 데이터
-        </Text>
-      </div>
       <Table>
         <TableHeader>
           <TableRow>
@@ -42,7 +37,7 @@ export default function SummaryList(props:SummaryListProps) {
               return (
                 <TableHeaderCell key={column.name}>
                   <TableCellLayout media={column?.icon}>
-                    {column.name}
+                    <Text weight="bold" size={400}>{column.name}</Text>
                   </TableCellLayout>
                 </TableHeaderCell>
               );
@@ -51,19 +46,19 @@ export default function SummaryList(props:SummaryListProps) {
         </TableHeader>
         <TableBody>
           {props.series.map((summary) => {
+            const else_count = summary.total-summary.empty-summary.yes-summary.no;
             return (
               <TableRow key={summary.day} className="flex flex-row gap-2">
                 <TableCell>{summary.day}</TableCell>
                 <TableCell>{summary.total}</TableCell>
-                <TableCell>{summary.yes}</TableCell>
+                <TableCell>{summary.yes == 0 ? 0 :<Text className="text-lime-600">{summary.yes}</Text>}</TableCell>
                 <TableCell>{summary.no}</TableCell>
-                <TableCell>{summary.total-summary.empty-summary.yes-summary.no}</TableCell>
+                <TableCell>{else_count == 0 ? 0 : <Text weight="bold" size={400} className="text-yellow-500">{else_count}</Text>}</TableCell>
                 <TableCell>{summary.empty}</TableCell>
               </TableRow>
             );
           })}
         </TableBody>
       </Table>
-    </div>
   );
 }

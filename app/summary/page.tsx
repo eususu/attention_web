@@ -34,11 +34,17 @@ export default async function Summary() {
   return (
     <main className="overflow-x-clip">
       <div className="flex flex-col">
-        <div className="flex flex-row justify-center divide-x-8">
+        <div className="flex flex-row justify-center divide-x-8" style={{height:'calc(100vh - 44px)'}}>
           <div className="2xl:max-w-7xl flex flex-col gap-2 divide-y-2">
+            <div className="h-74">
             <SummaryChart title={`RAG 사용량 (${line_series.length}일간 ${line_total} 개)`} series={line_series} />
-            <div className="2xl:h-3/6 overflow-y-scroll">
+            </div>
+            <div className="overflow-y-scroll">
               <SummaryList series={summary.reverse()} />
+            </div>
+            <div className="h-8">
+              bottom
+
             </div>
           </div>
           <div className="">

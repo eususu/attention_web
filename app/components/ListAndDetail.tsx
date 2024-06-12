@@ -3,10 +3,6 @@
 import React, { useState } from "react";
 import QAList from "./QAList";
 import DetailView from "./DetailView";
-import { Text } from '@fluentui/react-components'
-import Link from "next/link";
-import { OverlayScrollbarsComponent } from "overlayscrollbars-react";
-
 
 type ListAndDetailProps = {
   list:Array<any>
@@ -25,7 +21,7 @@ export default function ListAndDetail(props:ListAndDetailProps) {
   });
 
   return (
-    <div className="w-full h-full max-w-5xl 2xl:max-w-7xl flex flex-col 2xl:flex-row gap-2 overflow-y-hidden p-4">
+    <div className="w-full h-full max-w-5xl 2xl:max-w-7xl flex flex-col 2xl:flex-col gap-2 overflow-y-hidden p-4">
       <div className="h-74">
         <DetailView key={selectedItem.id} {...selectedItem}></DetailView>
       </div>
