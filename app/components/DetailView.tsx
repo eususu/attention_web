@@ -110,12 +110,10 @@ export default function DetailView(props:DetailViewProps) {
   return (
     <Card className={styles.card}>
       <CardHeader
-        header={ <Text size={500}>상세보기</Text>}
+        header={ <Text size={500}>상세보기{props.id == -1 ? "(선택되지 않음)": null}</Text>}
       >
 
       </CardHeader>
-
-      { props.query ?
 
       <Table size="small">
         <TableBody>
@@ -174,9 +172,6 @@ export default function DetailView(props:DetailViewProps) {
 
         </TableBody>
       </Table>
-      :
-      <></>
-      }
     </Card>
   )
 }
